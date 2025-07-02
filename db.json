@@ -1,1 +1,10 @@
-{}
+{
+  "users": [
+    {
+      "id": "ee24",
+      "name": "Ahmad Zaini",
+      "email": "ahmadpacen@gmail.com",
+      "password": "123"
+    }
+  ]
+}

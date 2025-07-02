@@ -22,12 +22,14 @@
         </div>
         <button type="submit" class="btn btn-primary">Daftar</button>
       </form>
-      <p class="switch-form">Sudah punya akun? <a href="#">Login di sini</a></p>
+      <p class="switch-form">Sudah punya akun? <router-link to="/login"> login</router-link></p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'SignUp',
   data() {
@@ -39,14 +41,23 @@ export default {
     };
   },
   methods: {
-    handleSignUp() {
+    async handleSignUp() {
       if (this.password !== this.confirmPassword) {
         alert('Password tidak cocok!');
         return;
       }
-      // Logika sign up di sini
-      console.log('Sign Up attempt:', this.email);
-      alert('Fitur sign up belum diimplementasikan.');
+      try {
+        const response = await axios.post('http://localhost:3000/users', {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        });
+        alert('Pendaftaran berhasil! Silakan login.');
+        this.$router.push('/login');
+      } catch (error) {
+        console.error('Error during sign up:', error);
+        alert('Terjadi kesalahan saat mendaftar. Silakan coba lagi.');
+      }
     }
   }
 }

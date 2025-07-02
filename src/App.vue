@@ -9,12 +9,12 @@
         <router-link to="/">Home</router-link>
         <router-link to="/product">Product</router-link>
         <router-link to="/aboutus">About Us</router-link>
-        <router-link to="/artikel">Artikel</router-link>
+        <!-- <router-link to="/artikel">Artikel</router-link> -->
       </div>
 
       <div class="nav-auth">
         <router-link to="/login" class="btn btn-login">Login</router-link>
-        <router-link to="/signup" class="btn btn-signup">Signup</router-link>
+        <!-- <router-link to="/signup" class="btn btn-signup">Signup</router-link> -->
       </div>
     </div>
 
@@ -146,7 +146,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: bold;
-  background-color: #f0f2f5;
+  background-color: #e6b800;
   box-shadow: 6px 6px 12px #d1d3d6, -6px -6px 12px #ffffff;
   display: inline-block;
 }

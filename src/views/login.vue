@@ -14,12 +14,14 @@
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
-      <p class="switch-form">Belum punya akun? <a href="#">Daftar di sini</a></p>
+<p class="switch-form">Belum punya akun? <router-link to="/signup">Daftar di sini</router-link></p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Login',
   data() {
@@ -29,10 +31,25 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      // Logika login di sini
-      console.log('Login attempt:', this.email);
-      alert('Fitur login belum diimplementasikan.');
+    async handleLogin() {
+      try {
+        const response = await axios.get('http://localhost:3000/users', {
+          params: {
+            email: this.email,
+            password: this.password,
+          }
+        });
+        if (response.data.length > 0) {
+          alert('Login berhasil!');
+          // Optionally redirect or perform post-login actions here
+          this.$router.push('/');
+        } else {
+          alert('Email atau password salah.');
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+        alert('Terjadi kesalahan saat login. Silakan coba lagi.');
+      }
     }
   }
 }
