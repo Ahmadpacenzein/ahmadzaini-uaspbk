@@ -6,6 +6,8 @@ import login from '../views/login.vue';
 import signup from '../views/signup.vue';
 import aboutus from '../views/aboutus.vue';
 import artikel from '../views/artikel.vue';
+import history from '../views/history.vue';
+import keranjang from '../views/keranjang.vue';
 
 
 const routes =[
@@ -16,6 +18,8 @@ const routes =[
     {path:'/signup',component:signup },
     {path:'/aboutus',component:aboutus },
     {path:'/artikel',component:artikel },
+    {path:'/history',component:history },
+    {path:'/keranjang',component:keranjang },
 
 ]
 const router = createRouter({

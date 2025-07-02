@@ -9,6 +9,8 @@
         <router-link to="/">Home</router-link>
         <router-link to="/product">Product</router-link>
         <router-link to="/aboutus">About Us</router-link>
+        <router-link to="/history">History</router-link>
+        <router-link to="/keranjang">Keranjang</router-link>
         <!-- <router-link to="/artikel">Artikel</router-link> -->
       </div>
 
