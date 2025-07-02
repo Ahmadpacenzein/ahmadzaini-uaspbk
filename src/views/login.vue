@@ -41,7 +41,11 @@ export default {
         });
         if (response.data.length > 0) {
           alert('Login berhasil!');
-          // Optionally redirect or perform post-login actions here
+          // Store user info in localStorage
+          const user = response.data[0];
+          localStorage.setItem('user', JSON.stringify(user));
+          // Emit login event
+          this.$eventBus.emit('login', user);
           this.$router.push('/');
         } else {
           alert('Email atau password salah.');

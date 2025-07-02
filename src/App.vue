@@ -15,7 +15,13 @@
       </div>
 
       <div class="nav-auth">
-        <router-link to="/login" class="btn btn-login">Login</router-link>
+        <template v-if="user">
+          <span class="username">Halo, {{ user.name }}</span>
+          <button class="btn btn-logout" @click="logout">Logout</button>
+        </template>
+        <template v-else>
+          <router-link to="/login" class="btn btn-login">Login</router-link>
+        </template>
         <!-- <router-link to="/signup" class="btn btn-signup">Signup</router-link> -->
       </div>
     </div>
@@ -37,12 +43,32 @@ export default {
     login,
     signup 
   },
-
-
+  data() {
+    return {
+      user: null,
+    };
+  },
   computed: {
     showNavAndFooter() {
       const hiddenPaths = ['/login', '/signup'];   
       return !hiddenPaths.includes(this.$route.path);
+    }
+  },
+  created() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+    }
+    // Listen for login event to update user reactively
+    this.$eventBus.on('login', (user) => {
+      this.user = user;
+    });
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('user');
+      this.user = null;
+      this.$router.push('/login');
     }
   }
 }
@@ -172,5 +198,28 @@ body {
 }
 .btn-signup:hover {
     color: #cda500;
+}
+
+.nav-auth .username {
+  font-weight: bold;
+  color: #333;
+  margin-right: 15px;
+}
+
+.nav-auth .btn-logout {
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #e6b800;
+  box-shadow: 6px 6px 12px #d1d3d6, -6px -6px 12px #ffffff;
+  padding: 10px 18px;
+  border-radius: 15px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.nav-auth .btn-logout:hover {
+  box-shadow: inset 3px 3px 6px #d1d3d6, inset -3px -3px 6px #ffffff;
+  color: #555;
 }
 </style>
