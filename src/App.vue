@@ -1,7 +1,8 @@
 <template>
-  <div id="app"> <div class="navbar1" v-if="showNavAndFooter">
+  <div id="app">
+    <div class="navbar1" v-if="showNavAndFooter">
       <div class="nav-logo">
-        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT1S-JWoq3hikl6i8AUrLOVoFXCsDnIifRbiorl0F0SKUnm3wmx" alt="Logo Jamu Kita"> 
+        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT1S-JWoq3hikl6i8AUrLOVoFXCsDnIifRbiorl0F0SKUnm3wmx" alt="Logo Jamu Kita" />
         <span>JamuGenji</span>
       </div>
 
@@ -17,7 +18,7 @@
       <div class="nav-auth">
         <template v-if="user">
           <span class="username">Halo, {{ user.name }}</span>
-          <button class="btn btn-logout" @click="logout">Logout</button>
+          <button class="btn btn-logout" @click="logout"><font-awesome-icon :icon="['fas', 'sign-out-alt']" /></button>
         </template>
         <template v-else>
           <router-link to="/login" class="btn btn-login">Login</router-link>

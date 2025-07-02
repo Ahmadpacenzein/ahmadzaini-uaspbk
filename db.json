@@ -5,6 +5,12 @@
       "name": "Ahmad Zaini",
       "email": "ahmadpacen@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "c1c7",
+      "name": "Synthia",
+      "email": "syntia@mail.com",
+      "password": "1122"
     }
   ]
 }

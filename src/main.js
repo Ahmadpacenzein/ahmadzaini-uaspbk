@@ -5,9 +5,9 @@ import router from './router';
 import eventBus from './eventBus';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faUser, faLock, fas } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, fas, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faLock,fas.faCartShopping); // Menambahkan ikon cart-shopping
+library.add(faUser, faLock, fas.faCartShopping, faSignOutAlt); // Menambahkan ikon cart-shopping dan sign-out
 
 const app = createApp(App);
 
