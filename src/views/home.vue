@@ -6,7 +6,7 @@
         <h1>Rasakan Kekuatan Alam dalam Setiap Tetes Jamu Kita</h1>
         <p>Kembali ke akar tradisi untuk kesehatan modern Anda. Temukan jamu favoritmu!</p>
         <p>"JamuGenji jamunya para Gen Z"</p>
-        <button class="btn btn-cta">Jelajahi Produk</button>
+        <button class="btn btn-cta"@click="goToProductPage">Jelajahi Produk</button>
       </div>
     </section>
     <section class="featured-products">
@@ -55,6 +55,11 @@
 <script>
 export default {
     name: 'Home',
+    methods: {
+        goToProductPage() {
+            this.$router.push('/product');
+        }
+    }
 }
 </script>
 
