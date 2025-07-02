@@ -3,7 +3,7 @@
     <section class="hero-section">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>Rasakan Kekuatan Alam dalam Setiap Tetes Jamu Kita</h1>
+        <h1>Rasakan Kekuatan Alam dalam Setiap Tetes Jamu</h1>
         <p>Kembali ke akar tradisi untuk kesehatan modern Anda. Temukan jamu favoritmu!</p>
         <p>"JamuGenji jamunya para Gen Z"</p>
         <button class="btn btn-cta"@click="goToProductPage">Jelajahi Produk</button>
