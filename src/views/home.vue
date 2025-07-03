@@ -6,7 +6,7 @@
         <h1>Rasakan Kekuatan Alam dalam Setiap Tetes Jamu</h1>
         <p>Kembali ke akar tradisi untuk kesehatan modern Anda. Temukan jamu favoritmu!</p>
         <p>"JamuGenji jamunya para Gen Z"</p>
-        <button class="btn btn-cta"@click="goToProductPage">Jelajahi Produk</button>
+        <button class="btn btn-cta" @click="goToProductPage">Jelajahi Produk</button>
       </div>
     </section>
     <section class="featured-products">
@@ -25,7 +25,7 @@
       </div>
 
     </section>
-    <button class="btn btn-cta"@click="goToProductPage">Jelajahi Produk</button>
+        <button class="btn btn-cta" @click="goToProductPage">Jelajahi Produk</button>
 
     <section class="featured-articles">
         <h2>Artikel Unggulan</h2>
@@ -35,7 +35,7 @@
                 <p>Kunyit asam bukan hanya menyegarkan, tapi juga menyimpan segudang...</p>
                 <a href="https://www.sidomunculstore.com/blog/post/16-manfaat-jamu-kunyit-asam-untuk-wanita.html" class="read-more">Baca Selengkapnya</a>
             </div>
-             <div class="article-item neumorphism-card-small">
+            <div class="article-item neumorphism-card-small">
                 <h3>Beras Kencur: Penghangat Tubuh Alami</h3>
                 <p>Saat cuaca dingin atau badan terasa pegal, segelas beras kencur bisa...</p>
                 <a href="https://www.liputan6.com/feeds/read/5857139/resep-beras-kencur-minuman-tradisional-berkhasiat-untuk-kesehatan#:~:text=Beras%20Kencur%20dengan%20Jahe:%20*%20Manfaat:%20Meningkatkan,Meredakan%20masuk%20angin%20dan%20meningkatkan%20sirkulasi%20darah." class="read-more">Baca Selengkapnya</a>
@@ -63,8 +63,8 @@ export default {
     },
     async mounted() {
         try {
-            const response = await axios.get('/db.json');
-            this.products = response.data.products || [];
+            const response = await axios.get('http://localhost:3000/products');
+            this.products = response.data || [];
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -113,7 +113,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(50, 50, 30, 0.45);
+  background-color: rgba(50, 50, 30, 0.35);
   z-index: 1; 
 }
 
@@ -122,6 +122,7 @@ export default {
   color: #ffffff; 
   padding: 30px;
   max-width: 700px;
+  z-index: 2;
 }
 
 .hero-content h1 {
@@ -169,17 +170,25 @@ export default {
 }
 
 .btn-cta {
-  background-color: #e6b800;
-  color: white;
+  position: relative;
+  z-index: 3; /* Increased z-index to be above hero-content */
+  background: linear-gradient(145deg, #ffcc00, #e6b800);
+  color: #333;
   font-size: 1.1em;
   padding: 15px 35px;
-  box-shadow: 8px 8px 16px #c49c00, -8px -8px 16px #fff488;
-  /* Tambahkan text-shadow agar lebih kontras di atas gambar */
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.2), -8px -8px 16px rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.3);
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  pointer-events: auto;
 }
 .btn-cta:hover {
-  background-color: #cda500;
-  box-shadow: inset 4px 4px 8px #b18e00, inset -4px -4px 8px #fffcb0;
+  background: linear-gradient(145deg, #e6b800, #d4a500);
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1), inset -4px -4px 8px rgba(255,255,255,0.9);
+  transform: translateY(-2px);
+  border: 2px solid rgba(255,255,255,0.5);
 }
 
 h2 {

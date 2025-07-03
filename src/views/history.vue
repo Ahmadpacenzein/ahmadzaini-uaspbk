@@ -111,33 +111,14 @@ export default {
   methods: {
     async loadHistories() {
       try {
-        // First try to load from db.json
-        const response = await axios.get('/db.json');
-        const dbHistories = response.data.histories || [];
-        
-        // Also load from localStorage (for new orders)
-        const localHistories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
-        
-        // Combine both sources, removing duplicates by ID
-        const allHistories = [...dbHistories];
-        localHistories.forEach(localOrder => {
-          if (!allHistories.find(dbOrder => dbOrder.id === localOrder.id)) {
-            allHistories.push(localOrder);
-          }
-        });
-        
-        this.histories = allHistories;
-        console.log('Loaded histories:', this.histories);
+        // Load histories from JSON server
+        const response = await axios.get('http://localhost:3000/histories');
+        this.histories = response.data || [];
+        console.log('Loaded histories from database:', this.histories);
       } catch (error) {
-        console.error('Error loading histories from db.json, falling back to localStorage:', error);
-        // Fallback to localStorage only
-        try {
-          const histories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
-          this.histories = histories;
-        } catch (localError) {
-          console.error('Error loading from localStorage:', localError);
-          this.histories = [];
-        }
+        console.error('Error loading histories from database:', error);
+        this.histories = [];
+        alert('Gagal memuat riwayat pesanan. Silakan coba lagi nanti.');
       }
     },
     formatDate(dateString) {

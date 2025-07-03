@@ -159,15 +159,8 @@ export default {
           status: 'completed'
         };
 
-        // Store order in both localStorage and simulate saving to db.json
-        const existingHistories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
-        existingHistories.push(orderHistory);
-        localStorage.setItem('orderHistories', JSON.stringify(existingHistories));
-
-        // Also update the db.json structure (for demonstration)
-        // In a real app, this would be an API call to the backend
-        console.log('Order saved to history:', orderHistory);
-        console.log('All orders:', existingHistories);
+        // Save order to db.json
+        await this.saveOrderToDatabase(orderHistory);
 
         // Clear cart
         this.cartStore.clearCart();
@@ -180,6 +173,22 @@ export default {
       } catch (error) {
         console.error('Error processing payment:', error);
         alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+      }
+    },
+
+    async saveOrderToDatabase(orderHistory) {
+      try {
+        // Get current histories
+        const response = await axios.get('http://localhost:3000/histories');
+        const histories = response.data || [];
+        
+        // Add new order
+        await axios.post('http://localhost:3000/histories', orderHistory);
+        
+        console.log('Order successfully saved to database:', orderHistory);
+      } catch (error) {
+        console.error('Error saving order to database:', error);
+        throw error; // Re-throw to be handled by the caller
       }
     }
   }

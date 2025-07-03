@@ -25,13 +25,15 @@
         <img :src="product.image" :alt="product.name">
         <h3>{{ product.name }}</h3>
         <span class="price">Rp {{ formatPrice(product.price) }}</span>
-        <button class="btn btn-add-cart">Tambah</button>
+        <button class="btn btn-add-cart" @click="addToCart(product)">Tambah</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useCartStore } from '../stores/cart';
+
 export default {
   name: 'Product',
   data() {
@@ -40,6 +42,10 @@ export default {
       activeFilter: 'Semua',
       filters: ['Semua', 'Penyegar', 'Penghangat', 'Stamina']
     }
+  },
+  setup() {
+    const cartStore = useCartStore();
+    return { cartStore };
   },
   computed: {
     filteredProducts() {
@@ -52,9 +58,8 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('/db.json')
-        const data = await response.json()
-        this.products = data.products
+        const response = await fetch('http://localhost:3000/products')
+        this.products = await response.json()
       } catch (error) {
         console.error('Error fetching products:', error)
       }
@@ -64,6 +69,10 @@ export default {
     },
     formatPrice(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+    addToCart(product) {
+      this.cartStore.addToCart(product);
+      alert(`${product.name} berhasil ditambahkan ke keranjang!`);
     }
   },
   mounted() {
