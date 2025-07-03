@@ -64,13 +64,3 @@ Pull requests dipersilakan! Untuk perubahan besar, buka issue terlebih dahulu.
 **"Kembali ke akar tradisi untuk kesehatan modern Anda"** - [JamuGenji](https://github.com/Ahmadpacenzein/ahmadzaini-uaspbk)
 ```
 
-### Catatan:
-1. Untuk gambar, pastikan:
-   - File gambar sudah di-upload ke repo
-   - Update link gambar di README jika nama filenya berbeda
-2. Kamu bisa tambahkan:
-   - Badge tambahan (CI, Coverage Test, dll)
-   - Dokumentasi API jika ada
-   - Panduan kontribusi lebih detail
-
-Mau ada yang diubah atau ditambahkan? 😊
