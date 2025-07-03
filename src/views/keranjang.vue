@@ -4,7 +4,7 @@
     
     <div v-if="cartStore.items.length === 0" class="empty-cart">
       <p>Keranjang Anda kosong</p>
-      <button class="btn btn-cta" @click="goToHome">Mulai Belanja</button>
+      <button class="btn btn-cta" @click="goToProduct">Mulai Belanja</button>
     </div>
 
     <div v-else class="cart-content">
@@ -61,7 +61,7 @@
           <span>Total Harga:</span>
           <span>Rp {{ cartStore.totalPrice.toLocaleString('id-ID') }}</span>
         </div>
-        <button class="btn btn-checkout">Checkout</button>
+        <button class="btn-checkout">Checkout</button>
       </div>
     </div>
   </div>
@@ -81,8 +81,8 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
-    goToHome() {
-      this.$router.push('/');
+    goToProduct() {
+      this.$router.push('/product');
     },
     increaseQuantity(productId) {
       const item = this.cartStore.items.find(item => item.id === productId);
@@ -263,17 +263,23 @@ h1 {
   width: 100%;
   font-weight: bold;
   border-radius: 30px;
-  background-color: #6f6f6f;
-  color: rgb(0, 0, 0);
-  font-size: 1.1em;
-  padding: 15px;
+  background-color: white;
+  background:#e6b800;
+  color: #333;
+  font-size: 1.2em;
+  padding: 18px;
   margin-top: 20px;
-  box-shadow: 6px 6px 12px #c49c00, -6px -6px 12px #fff488;
+  /* box-shadow: 6px 6px 12px #e6b800, -6px -6px 12px #ffdb4d; */
+  border: 2px solid #ffcc00;
+  transition: all 0.3s ease;
 }
 
 .btn-checkout:hover {
-  background-color: #cda500;
-  box-shadow: inset 3px 3px 6px #b18e00, inset -3px -3px 6px #fffcb0;
+  background-color: #ffcc00;
+  background: #ffcc00;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 16px #e6b800, -8px -8px 16px #ffeb80;
 }
 
 .neumorphism-card {
