@@ -76,6 +76,10 @@ export default {
     const cartStore = useCartStore();
     return { cartStore };
   },
+  mounted() {
+    // Scroll to top when component is mounted
+    window.scrollTo(0, 0);
+  },
   methods: {
     goToHome() {
       this.$router.push('/');
@@ -103,16 +107,21 @@ export default {
 
 <style scoped>
 .keranjang-container {
-  padding: 40px;
+  padding: 20px 40px 40px 40px;
   background-color: #f0f2f5;
   min-height: 100vh;
+  margin-top: 0;
+  position: relative;
+  top: 0;
 }
 
 h1 {
   text-align: center;
+  margin-top: 0;
   margin-bottom: 40px;
   color: #444;
   font-weight: 600;
+  padding-top: 20px;
 }
 
 .empty-cart {
@@ -182,6 +191,7 @@ h1 {
   justify-content: center;
   font-weight: bold;
   background-color: #f0f2f5;
+  color: #333;
   box-shadow: 4px 4px 8px #d1d3d6, -4px -4px 8px #ffffff;
 }
 
@@ -208,8 +218,9 @@ h1 {
 }
 
 .btn-remove {
+  font-weight: bold;
   background-color: #ff6b6b;
-  color: white;
+  color: rgb(218, 0, 0);
   padding: 8px 16px;
   box-shadow: 4px 4px 8px #d1d3d6, -4px -4px 8px #ffffff;
 }
@@ -217,6 +228,7 @@ h1 {
 .btn-remove:hover {
   background-color: #ff5252;
   box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2), inset -2px -2px 4px rgba(255,255,255,0.8);
+  color: #d1d3d6;
 }
 
 .cart-summary {
@@ -249,8 +261,10 @@ h1 {
 
 .btn-checkout {
   width: 100%;
-  background-color: #e6b800;
-  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  background-color: #6f6f6f;
+  color: rgb(0, 0, 0);
   font-size: 1.1em;
   padding: 15px;
   margin-top: 20px;
