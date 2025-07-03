@@ -61,7 +61,7 @@
           <span>Total Harga:</span>
           <span>Rp {{ cartStore.totalPrice.toLocaleString('id-ID') }}</span>
         </div>
-        <button class="btn-checkout">Checkout</button>
+        <button class="btn-checkout" @click="goToCheckout">Checkout</button>
       </div>
     </div>
   </div>
@@ -83,6 +83,9 @@ export default {
   methods: {
     goToProduct() {
       this.$router.push('/product');
+    },
+    goToCheckout() {
+      this.$router.push('/checkout');
     },
     increaseQuantity(productId) {
       const item = this.cartStore.items.find(item => item.id === productId);

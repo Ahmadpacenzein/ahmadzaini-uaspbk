@@ -8,6 +8,7 @@ import aboutus from '../views/aboutus.vue';
 import artikel from '../views/artikel.vue';
 import history from '../views/history.vue';
 import keranjang from '../views/keranjang.vue';
+import checkout from '../views/checkout.vue';
 
 
 const routes =[
@@ -20,6 +21,7 @@ const routes =[
     {path:'/artikel',component:artikel },
     {path:'/history',component:history },
     {path:'/keranjang',component:keranjang },
+    {path:'/checkout',component:checkout },
 
 ]
 const router = createRouter({
