@@ -20,7 +20,7 @@
           <img :src="product.image" :alt="product.name" />
           <h3>{{ product.name }}</h3>
           <p>Rp {{ product.price.toLocaleString('id-ID') }}</p>
-          <button class="btn btn-add-cart">Tambah</button>
+          <button class="btn btn-add-cart" @click="addToCart(product)">Tambah</button>
         </div>
       </div>
 
@@ -48,6 +48,7 @@
 
 <script>
 import axios from 'axios';
+import { useCartStore } from '../stores/cart';
 
 export default {
     name: 'Home',
@@ -55,6 +56,10 @@ export default {
         return {
             products: []
         }
+    },
+    setup() {
+        const cartStore = useCartStore();
+        return { cartStore };
     },
     async mounted() {
         try {
@@ -67,6 +72,10 @@ export default {
     methods: {
         goToProductPage() {
             this.$router.push('/product');
+        },
+        addToCart(product) {
+            this.cartStore.addToCart(product);
+            alert(`${product.name} berhasil ditambahkan ke keranjang!`);
         }
     }
 }
