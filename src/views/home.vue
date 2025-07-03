@@ -13,7 +13,7 @@
       <h2>Produk Unggulan</h2>
       <div class="product-grid">
         <div 
-          v-for="product in products" 
+          v-for="product in products.slice(0, 3)" 
           :key="product.id" 
           class="product-card neumorphism-card-small"
         >
@@ -86,29 +86,24 @@ export default {
     padding: 0 40px;
     padding-bottom: 40px;
     background-color: #f0f2f5;
-    /* Hapus border-radius dari container utama agar hero bisa full-width jika diinginkan, 
-       atau sesuaikan jika container dibatasi lebarnya */
 }
 
-/* GAYA LAMA .neumorphism-card untuk hero DIHAPUS */
 
-/* GAYA BARU UNTUK HERO SECTION */
 .hero-section {
-  position: relative; /* Diperlukan untuk positioning overlay dan content */
-  height: 65vh; /* Tinggi section, sesuaikan sesuai selera */
-  margin-bottom: 60px; /* Jarak ke section berikutnya */
-  border-radius: 30px; /* Agar sudutnya tetap melengkung */
-  overflow: hidden; /* Agar gambar tidak keluar dari border-radius */
+  position: relative;
+  height: 65vh; 
+  margin-bottom: 60px;
+  border-radius: 30px; 
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   
-  /* --- FIELD UNTUK GAMBAR LATAR --- */
-  /* Ganti URL ini dengan path gambar Anda */
+ 
   background-image: url('https://awsimages.detik.net.id/community/media/visual/2025/02/08/jamu-2.jpeg?w=1200'); 
-  background-size: cover; /* Agar gambar menutupi seluruh area */
-  background-position: center; /* Posisi gambar di tengah */
+  background-size: cover;
+  background-position: center;
   box-shadow: 15px 15px 30px #d1d3d6, -15px -15px 30px #ffffff; /* Shadow agar tetap neumorphism */
 }
 
@@ -118,24 +113,23 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(50, 50, 30, 0.45); /* Warna overlay (gelap kekuningan) - sesuaikan opacity */
-  z-index: 1; /* Di bawah teks, di atas gambar */
+  background-color: rgba(50, 50, 30, 0.45);
+  z-index: 1; 
 }
 
 .hero-content {
-  position: relative; /* Agar di atas overlay */
-  z-index: 2;
-  color: #ffffff; /* Warna teks putih agar kontras */
+  position: relative;
+  color: #ffffff; 
   padding: 30px;
-  max-width: 700px; /* Batasi lebar teks agar tidak terlalu panjang */
+  max-width: 700px;
 }
 
 .hero-content h1 {
-  font-size: 3em; /* Ukuran slogan lebih besar */
+  font-size: 3em;
   margin-bottom: 15px;
   font-weight: 700;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6); /* Bayangan teks agar lebih terbaca */
-  color: #fff; /* Pastikan H1 putih */
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 
 .hero-content p {

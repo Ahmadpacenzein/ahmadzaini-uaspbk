@@ -18,23 +18,53 @@
       "id": 1,
       "name": "Jamu Kunyit Asem",
       "price": 15000,
-      "image": "https://asset.kompas.com/crops/YdCxZWTFzecZK5U9uL-_uae7VgA=/24x0:867x562/1200x800/data/photo/2021/03/02/603e41b8eaf6b.jpg",
-      "Filter": "Jamu"
+      "image": "https://asset.kompas.com/crops/YdCxZWTFzecZK5U9uL-_uae7VgA=/24x0:867x562/1200x800/data/photo/2021/03/02/603e41b8eaf6b.jpg"
+      
     },
     {
       "id": 2,
       "name": "Jamu Beras Kencur",
       "price": 12000,
-      "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png",
-      "Filter": "Jamu"
+      "image": "https://allofresh.id/blog/wp-content/uploads/2023/05/image-39-780x470.png"
+
     },
     {
       "id": 3,
       "name": "Jamu Temulawak",
       "price": 16000,
-      "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png",
-      "Filter": "Jamu"
+      "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png"
+      
+    },
+    {
+      "id": 4,
+      "name": "Jamu Kunci Sirih",
+      "price": 14000,
+      "image": "https://cdn0-production-images-kly.akamaized.net/xQtoVmVdqRS3M3r2ReMLjhHf4lY=/302x0:802x667/1360x1812/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4468326/original/069236000_1686881134-shutterstock_1614813529.jpg"
+    },{
+      "id": 5,
+      "name":"Brotowali",
+      "price": 13000,
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhswMjAQHyPm4sKTgfw8dmtBZ6porjriWuqwo8-NwT-XiSmdTA4C0xql946N6XuKVp0syE1p0NglmHCmeYkYhzXZU2dKmqPua0MwBq2pfy4bzbuy88XFD2avmKCt0C0JzSMmZVkLYSXwLsl1z6Qz_d_f4E_7yZr7cmJGPV3jTUdBFHuH_13pY8nq_lTEF9n/w558-h319/Jamu%20Brotowali.jpeg"
+    },
+    {
+      "id": 6,
+      "name": "Sinom",
+      "price": 11000,
+      "image": "https://muthebogara.blog/wp-content/uploads/2020/07/Copy-of-muthebogara.blog-2024-09-10T072715.719.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Jamu Pasak Bumi",
+      "price": 18000,
+      "image": "https://www.alodokter.com/wp-content/uploads/2020/10/Tidak-Hanya-untuk-Vitalitas-Pria-Ini-6-Manfaat-Pasak-Bumi-yang-Perlu-Diketahui.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Jamu Batuk",
+      "price": 17000,
+      "image": "https://tse1.mm.bing.net/th/id/OIP.jzyO178Zhrbp5qDDBdIpbAHaFe?pid=Api&P=0&h=180"
     }
+    
   ],
   "histories": [
     {
