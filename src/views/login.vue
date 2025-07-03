@@ -33,7 +33,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.get('http://localhost:3000/users', {
+        const response = await axios.get('https://ecommerce-api-uas.glitch.me/users', {
           params: {
             email: this.email,
             password: this.password,

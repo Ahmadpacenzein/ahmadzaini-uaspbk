@@ -70,28 +70,6 @@
     }
   ],
   "histories": [
-    {
-      "id": "1751550968380",
-      "userId": "ee24",
-      "date": "2025-07-03T13:56:08.380Z",
-      "items": [
-        {
-          "id": "3",
-          "name": "Jamu Temulawak",
-          "price": 16000,
-          "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png",
-          "quantity": 1
-        }
-      ],
-      "shippingCost": 25000,
-      "totalAmount": 41000,
-      "recipientInfo": {
-        "name": "hg",
-        "phone": "123",
-        "address": "jl air dingin"
-      },
-      "paymentMethod": "transfer",
-      "status": "completed"
-    }
+
   ]
 }

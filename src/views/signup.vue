@@ -47,7 +47,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('http://localhost:3000/users', {
+        const response = await axios.post('https://ecommerce-api-uas.glitch.me/users', {
           name: this.name,
           email: this.email,
           password: this.password,

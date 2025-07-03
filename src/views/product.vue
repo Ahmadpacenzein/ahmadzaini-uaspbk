@@ -2,24 +2,11 @@
   <div class="product-page-container">
     <h2>Semua Produk Jamu Kami</h2>
     <p>Temukan ramuan tradisional terbaik untuk Anda.</p>
-    
-    <div class="filter-bar neumorphism-card-flat">
-        <span>Filter:</span>
-        <button 
-          v-for="filter in filters" 
-          :key="filter"
-          class="btn-filter"
-          :class="{ active: activeFilter === filter }"
-          @click="setFilter(filter)"
-        >
-          {{ filter }}
-        </button>
-    </div>
 
     <div class="product-grid">
       <div 
-        v-for="product in filteredProducts" 
-        :key="product.id" 
+        v-for="product in products"
+        :key="product.id"
         class="product-card neumorphism-card-small"
       >
         <img :src="product.image" :alt="product.name">
@@ -38,34 +25,21 @@ export default {
   name: 'Product',
   data() {
     return {
-      products: [],
-      activeFilter: 'Semua',
-      filters: ['Semua', 'Penyegar', 'Penghangat', 'Stamina']
+      products: []
     }
   },
   setup() {
     const cartStore = useCartStore();
     return { cartStore };
   },
-  computed: {
-    filteredProducts() {
-      if (this.activeFilter === 'Semua') {
-        return this.products
-      }
-      return this.products.filter(product => product.Filter === this.activeFilter)
-    }
-  },
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('http://localhost:3000/products')
+        const response = await fetch('https://ecommerce-api-uas.glitch.me/products')
         this.products = await response.json()
       } catch (error) {
         console.error('Error fetching products:', error)
       }
-    },
-    setFilter(filter) {
-      this.activeFilter = filter
     },
     formatPrice(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -98,37 +72,6 @@ p {
     margin-bottom: 40px;
 }
 
-.filter-bar {
-    margin-bottom: 40px;
-    padding: 15px 30px;
-    text-align: center;
-}
-
-.neumorphism-card-flat {
-  background: #f0f2f5;
-  border-radius: 20px;
-  box-shadow: 10px 10px 20px #d1d3d6, -10px -10px 20px #ffffff;
-}
-
-.btn-filter {
-  border: none;
-  padding: 8px 18px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background-color: #f0f2f5;
-  box-shadow: 5px 5px 10px #d1d3d6, -5px -5px 10px #ffffff;
-  margin: 0 10px;
-  color: #555;
-}
-.btn-filter:hover {
-    color: #e6b800;
-}
-.btn-filter.active {
-  color: #e6b800; /* Aksen kuning */
-  box-shadow: inset 4px 4px 8px #d1d3d6, inset -4px -4px 8px #ffffff;
-}
 
 .product-grid {
   display: grid;

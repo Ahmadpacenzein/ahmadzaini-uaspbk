@@ -179,11 +179,11 @@ export default {
     async saveOrderToDatabase(orderHistory) {
       try {
         // Get current histories
-        const response = await axios.get('http://localhost:3000/histories');
+        const response = await axios.get('https://ecommerce-api-uas.glitch.me/histories');
         const histories = response.data || [];
         
         // Add new order
-        await axios.post('http://localhost:3000/histories', orderHistory);
+        await axios.post('https://ecommerce-api-uas.glitch.me/histories', orderHistory);
         
         console.log('Order successfully saved to database:', orderHistory);
       } catch (error) {
