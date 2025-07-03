@@ -18,7 +18,7 @@
         :key="order.id" 
         class="history-item neumorphism-card"
       >
-        <div class="order-header">
+        <div class="order-header" @click="toggleOrderDetails(order.id)">
           <div class="order-info">
             <h3>Pesanan #{{ order.id }}</h3>
             <p class="order-date">{{ formatDate(order.date) }}</p>
@@ -26,10 +26,13 @@
           </div>
           <div class="order-total">
             <p class="total-amount">Rp {{ order.totalAmount.toLocaleString('id-ID') }}</p>
+            <button class="toggle-btn">
+              {{ expandedOrders.includes(order.id) ? '▲' : '▼' }}
+            </button>
           </div>
         </div>
 
-        <div class="order-details">
+        <div class="order-details" v-show="expandedOrders.includes(order.id)">
           <div class="recipient-info">
             <h4>Informasi Penerima:</h4>
             <p><strong>Nama:</strong> {{ order.recipientInfo.name }}</p>
@@ -84,7 +87,8 @@ export default {
   data() {
     return {
       histories: [],
-      currentUser: null
+      currentUser: null,
+      expandedOrders: []
     }
   },
   computed: {
@@ -94,7 +98,7 @@ export default {
         .sort((a, b) => new Date(b.date) - new Date(a.date));
     }
   },
-  mounted() {
+  async mounted() {
     // Get current user
     const user = localStorage.getItem('user');
     if (user) {
@@ -102,16 +106,38 @@ export default {
     }
 
     // Load histories
-    this.loadHistories();
+    await this.loadHistories();
   },
   methods: {
-    loadHistories() {
+    async loadHistories() {
       try {
-        const histories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
-        this.histories = histories;
+        // First try to load from db.json
+        const response = await axios.get('/db.json');
+        const dbHistories = response.data.histories || [];
+        
+        // Also load from localStorage (for new orders)
+        const localHistories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
+        
+        // Combine both sources, removing duplicates by ID
+        const allHistories = [...dbHistories];
+        localHistories.forEach(localOrder => {
+          if (!allHistories.find(dbOrder => dbOrder.id === localOrder.id)) {
+            allHistories.push(localOrder);
+          }
+        });
+        
+        this.histories = allHistories;
+        console.log('Loaded histories:', this.histories);
       } catch (error) {
-        console.error('Error loading histories:', error);
-        this.histories = [];
+        console.error('Error loading histories from db.json, falling back to localStorage:', error);
+        // Fallback to localStorage only
+        try {
+          const histories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
+          this.histories = histories;
+        } catch (localError) {
+          console.error('Error loading from localStorage:', localError);
+          this.histories = [];
+        }
       }
     },
     formatDate(dateString) {
@@ -146,6 +172,14 @@ export default {
     },
     goToHome() {
       this.$router.push('/');
+    },
+    toggleOrderDetails(orderId) {
+      const index = this.expandedOrders.indexOf(orderId);
+      if (index > -1) {
+        this.expandedOrders.splice(index, 1);
+      } else {
+        this.expandedOrders.push(orderId);
+      }
     }
   }
 };
@@ -200,6 +234,16 @@ h1 {
   margin-bottom: 25px;
   padding-bottom: 20px;
   border-bottom: 2px solid #e6b800;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-header:hover {
+  background-color: rgba(230, 184, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  margin: -15px;
+  margin-bottom: 10px;
 }
 
 .order-info h3 {
@@ -232,6 +276,12 @@ h1 {
   color: white;
 }
 
+.order-total {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .total-amount {
   font-size: 1.4em;
   font-weight: bold;
@@ -239,11 +289,49 @@ h1 {
   margin: 0;
 }
 
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #e6b800;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #e6b800;
+  color: white;
+}
+
 .order-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-bottom: 25px;
+  animation: slideDown 0.3s ease-out;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
 }
 
 .order-details h4 {

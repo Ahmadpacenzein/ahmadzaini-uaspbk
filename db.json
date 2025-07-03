@@ -7,10 +7,10 @@
       "password": "123"
     },
     {
-      "id": "c1c7",
-      "name": "Synthia",
-      "email": "syntia@mail.com",
-      "password": "1122"
+      "id": "1e62",
+      "name": "Pacen",
+      "email": "ahmad@gmail.com",
+      "password": "123"
     }
   ],
   "products": [
@@ -36,5 +36,36 @@
       "Filter": "Jamu"
     }
   ],
-  "histories": []
+  "histories": [
+    {
+      "id": "1735123456789",
+      "userId": "ee24",
+      "date": "2024-12-25T10:30:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "name": "Jamu Kunyit Asem",
+          "price": 15000,
+          "quantity": 2,
+          "image": "https://asset.kompas.com/crops/YdCxZWTFzecZK5U9uL-_uae7VgA=/24x0:867x562/1200x800/data/photo/2021/03/02/603e41b8eaf6b.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Jamu Beras Kencur",
+          "price": 12000,
+          "quantity": 1,
+          "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png"
+        }
+      ],
+      "shippingCost": 25000,
+      "totalAmount": 67000,
+      "recipientInfo": {
+        "name": "Ahmad Zaini",
+        "phone": "081234567890",
+        "address": "Jl. Merdeka No. 123, Jakarta Pusat"
+      },
+      "paymentMethod": "transfer",
+      "status": "completed"
+    }
+  ]
 }

@@ -159,11 +159,15 @@ export default {
           status: 'completed'
         };
 
-        // For demo purposes, we'll store the order in localStorage
-        // In a real application, this would be sent to a backend API
+        // Store order in both localStorage and simulate saving to db.json
         const existingHistories = JSON.parse(localStorage.getItem('orderHistories') || '[]');
         existingHistories.push(orderHistory);
         localStorage.setItem('orderHistories', JSON.stringify(existingHistories));
+
+        // Also update the db.json structure (for demonstration)
+        // In a real app, this would be an API call to the backend
+        console.log('Order saved to history:', orderHistory);
+        console.log('All orders:', existingHistories);
 
         // Clear cart
         this.cartStore.clearCart();
