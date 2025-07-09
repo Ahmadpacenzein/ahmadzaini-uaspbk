@@ -93,8 +93,7 @@
 
 <script>
 import { useCartStore } from '../stores/cart';
-import { ref, computed } from 'vue';
-import axios from 'axios';
+import { addHistory } from '../firebaseService';
 
 export default {
   name: 'Checkout',
@@ -159,8 +158,8 @@ export default {
           status: 'completed'
         };
 
-        // Save order to db.json
-        await this.saveOrderToDatabase(orderHistory);
+        // Save order to Firebase
+        await addHistory(orderHistory);
 
         // Clear cart
         this.cartStore.clearCart();
@@ -173,22 +172,6 @@ export default {
       } catch (error) {
         console.error('Error processing payment:', error);
         alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
-      }
-    },
-
-    async saveOrderToDatabase(orderHistory) {
-      try {
-        // Get current histories
-        const response = await axios.get('https://ecommerce-api-uas.glitch.me/histories');
-        const histories = response.data || [];
-        
-        // Add new order
-        await axios.post('https://ecommerce-api-uas.glitch.me/histories', orderHistory);
-        
-        console.log('Order successfully saved to database:', orderHistory);
-      } catch (error) {
-        console.error('Error saving order to database:', error);
-        throw error; // Re-throw to be handled by the caller
       }
     }
   }

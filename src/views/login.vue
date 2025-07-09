@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { loginUser } from '../firebaseService';
 
 export default {
   name: 'Login',
@@ -33,18 +33,11 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.get('https://ecommerce-api-uas.glitch.me/users', {
-          params: {
-            email: this.email,
-            password: this.password,
-          }
-        });
-        if (response.data.length > 0) {
+        const result = await loginUser(this.email, this.password);
+        if (result.success) {
           alert('Login berhasil!');
-          // Store user info in localStorage
-          const user = response.data[0];
+          const user = result.user;
           localStorage.setItem('user', JSON.stringify(user));
-          // Emit login event
           this.$eventBus.emit('login', user);
           this.$router.push('/');
         } else {

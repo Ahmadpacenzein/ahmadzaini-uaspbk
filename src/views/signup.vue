@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { createUser } from '../firebaseService'; // Pastikan path ini sesuai dengan struktur proyek Anda
 
 export default {
   name: 'SignUp',
@@ -47,7 +47,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('https://ecommerce-api-uas.glitch.me/users', {
+        await createUser({
           name: this.name,
           email: this.email,
           password: this.password,

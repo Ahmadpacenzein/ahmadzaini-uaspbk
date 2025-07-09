@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { useCartStore } from '../stores/cart';
+import { getAllProducts } from '../firebaseService';
 
 export default {
     name: 'Home',
@@ -63,8 +63,7 @@ export default {
     },
     async mounted() {
         try {
-            const response = await axios.get('https://ecommerce-api-uas.glitch.me/products');
-            this.products = response.data || [];
+            this.products = await getAllProducts();
         } catch (error) {
             console.error('Error fetching products:', error);
         }

@@ -12,7 +12,6 @@
         <router-link to="/aboutus">About Us</router-link>
         <router-link to="/history">History</router-link>
         <router-link to="/keranjang"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></router-link>
-        <!-- <router-link to="/artikel">Artikel</router-link> -->
       </div>
 
       <div class="nav-auth">

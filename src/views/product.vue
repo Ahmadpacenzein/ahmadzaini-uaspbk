@@ -20,6 +20,7 @@
 
 <script>
 import { useCartStore } from '../stores/cart';
+import { getAllProducts } from '../firebaseService';
 
 export default {
   name: 'Product',
@@ -35,8 +36,7 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('https://ecommerce-api-uas.glitch.me/products')
-        this.products = await response.json()
+        this.products = await getAllProducts();
       } catch (error) {
         console.error('Error fetching products:', error)
       }
