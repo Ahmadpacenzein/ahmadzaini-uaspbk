@@ -135,28 +135,28 @@ export default {
       try {
         // Get current user from localStorage
         const currentUser = JSON.parse(localStorage.getItem('user'));
-        if (!currentUser) {
+        if (!currentUser || !currentUser.id) {
           alert('Silakan login terlebih dahulu');
           this.$router.push('/login');
           return;
         }
 
         // Create order history entry
-        const orderHistory = {
-          id: Date.now().toString(),
-          userId: currentUser.id,
-          date: new Date().toISOString(),
-          items: this.cartStore.items,
-          shippingCost: this.shippingCost,
-          totalAmount: this.totalAmount,
-          recipientInfo: {
-            name: this.formData.recipientName,
-            phone: this.formData.phone,
-            address: this.formData.address
-          },
-          paymentMethod: this.formData.paymentMethod,
-          status: 'completed'
-        };
+      const orderHistory = {
+      id: Date.now().toString(),
+      userId: currentUser.id, // ✅ sudah dipastikan tidak undefined
+      date: new Date().toISOString(),
+      items: this.cartStore.items,
+      shippingCost: this.shippingCost,
+      totalAmount: this.totalAmount,
+      recipientInfo: {
+        name: this.formData.recipientName,
+        phone: this.formData.phone,
+        address: this.formData.address
+      },
+      paymentMethod: this.formData.paymentMethod,
+      status: 'completed'
+    };
 
         // Save order to Firebase
         await addHistory(orderHistory);
